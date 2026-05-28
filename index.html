@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Paresh Ghimire | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #050505;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: rgba(0,255,170,0.08);
+      filter: blur(140px);
+      top: -100px;
+      left: -100px;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: rgba(0,140,255,0.08);
+      filter: blur(140px);
+      bottom: -100px;
+      right: -100px;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 10%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000;
+    }
+
+    nav h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #00ffae;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ddd;
+      transition: 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    nav ul li a:hover {
+      color: #00ffae;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 10%;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h2 {
+      font-size: 1.2rem;
+      color: #00ffae;
+      margin-bottom: 20px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      line-height: 1.1;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: #00ffae;
+    }
+
+    .hero p {
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 32px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.35s ease;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .primary {
+      background: #00ffae;
+      color: #000;
+      box-shadow: 0 0 25px rgba(0,255,174,0.4);
+    }
+
+    .primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(0,255,174,0.7);
+    }
+
+    .secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+    }
+
+    .secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title h2 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #888;
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 40px;
+      transition: 0.4s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0,255,174,0.4);
+      box-shadow: 0 0 30px rgba(0,255,174,0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 20px;
+      color: #00ffae;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      color: #bbb;
+      line-height: 1.8;
+    }
+
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 25px;
+    }
+
+    .skill-box {
+      padding: 35px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .skill-box:hover {
+      background: #00ffae;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .project-card {
+      padding: 35px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,255,174,0.4);
+    }
+
+    .project-card h3 {
+      color: #00ffae;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .project-card p {
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      margin: 5px;
+      border-radius: 50px;
+      background: rgba(0,255,174,0.1);
+      color: #00ffae;
+      font-size: 0.8rem;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      padding: 50px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-box p {
+      margin: 15px 0;
+      color: #bbb;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width: 900px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      nav ul {
+        gap: 18px;
+      }
+    }
+
+    @media(max-width: 700px) {
+      nav {
+        padding: 20px 7%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+
+      section {
+        padding: 120px 7%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1></h1>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content hidden">
+      <h2>Backend Developer</h2>
+
+      <h1>
+        Aastha <span>Ghimire</span>
+      </h1>
+
+      <p>
+        CSIT student who loves technology and problem solving.
+        Currently exploring backend development, web technologies,
+        and data science to build impactful digital products.
+      </p>
+
+      <div class="btns">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn secondary">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title hidden">
+      <h2>About Me</h2>
+      <p>Passionate student developer building modern tech skills.</p>
+    </div>
+
+    <div class="about-container">
+      <div class="card hidden">
+        <h3>Who I Am</h3>
+        <p>
+          I am a CSIT student passionate about backend systems,
+          programming, and modern technology. I enjoy learning how
+          applications work behind the scenes and solving real-world
+          problems using code.
+        </p>
+      </div>
+
+      <div class="card hidden">
+        <h3>Future Goal</h3>
+        <p>
+          My long-term goal is to become a data scientist and build
+          intelligent systems powered by AI and machine learning.
+          I continuously improve my technical skills through projects
+          and self-learning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title hidden">
+      <h2>Skills</h2>
+      <p>Technologies and tools I currently work with.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-box hidden">HTML5</div>
+      <div class="skill-box hidden">CSS3</div>
+      <div class="skill-box hidden">JavaScript</div>
+      <div class="skill-box hidden">Python</div>
+      <div class="skill-box hidden">Backend Development</div>
+      <div class="skill-box hidden">Responsive Design</div>
+      <div class="skill-box hidden">Problem Solving</div>
+      <div class="skill-box hidden">Data Science Basics</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-title hidden">
+      <h2>Projects</h2>
+      <p>Some projects created during my learning journey.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card hidden">
+        <h3>AI Student Assistant</h3>
+
+        <p>
+          A smart AI-based assistant designed for students to manage notes,
+          schedules, and learning resources using Python and JavaScript.
+        </p>
+
+        <span class="tag">Python</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">AI</span>
+      </div>
+
+      <div class="project-card hidden">
+        <h3>Cyber Dashboard</h3>
+
+        <p>
+          A futuristic hacker-style analytics dashboard showing server stats,
+          logs, and security monitoring in real time.
+        </p>
+
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+
+      <div class="project-card hidden">
+        <h3>Data Vision</h3>
+
+        <p>
+          A beginner data science project that visualizes datasets and predicts
+          trends using Python libraries and machine learning concepts.
+        </p>
+
+        <span class="tag">Python</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Data Analysis</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="section-title hidden">
+      <h2>Contact</h2>
+      <p>Interested in collaborating or building something together?</p>
+    </div>
+
+    <div class="contact-box hidden">
+      <p>📧 aasthaghi345@gmail.com</p>
+      <p></p>
+      <p>📍 Chitwan, Nepal</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Aastha Ghimire — Built with HTML, CSS & JavaScript.
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
